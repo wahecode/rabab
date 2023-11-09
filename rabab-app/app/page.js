@@ -2,7 +2,6 @@
 import PanelContainer from "./components/PanelContainer";
 import Panel from "./components/PanelContainer/Panel";
 import ResizeablePanel from "./components/PanelContainer/ResizeablePanel";
-import Test from "./components/Test";
 import { Tree } from "./components/Tree/Tree";
 
 export default function Home() {
@@ -24,7 +23,7 @@ export default function Home() {
     ];
     return (
         <div>
-            <Test>Hello this is my world</Test>
+            <div>hello</div>
             <PanelContainer>
                 <ResizeablePanel minwidth="300px" maxwidth="500px">
                     <Tree data={collections} />
