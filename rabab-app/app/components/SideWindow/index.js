@@ -3,11 +3,10 @@ import { useState } from 'react'
 import NewCollectionModal from './NewCollectionModal'
 import { Tree } from '../Tree/Tree'
 import { useSelector } from 'react-redux'
+import TreeService from '@/lib/TreeService'
 
 export default function SideWindow() {
     const { collections } = useSelector((state) => state.collections)
-
-    const { theme } = useSelector((state) => state.theme)
 
     const [newCollectionModalVisible, setNewCollectionModalVisible] = useState(false)
 
@@ -26,13 +25,7 @@ export default function SideWindow() {
             />
             <button onClick={openNewCollectionModalHandler}>Add Collection</button>
 
-            {collections.map((collection) => {
-                return (
-                    <p>
-                        <button> {collection.name}</button>
-                    </p>
-                )
-            })}
+            <Tree data={TreeService.transformCollectionData(collections)} />
         </div>
     )
 }
