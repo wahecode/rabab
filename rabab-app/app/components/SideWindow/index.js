@@ -5,9 +5,9 @@ import { Tree } from '../Tree/Tree'
 import { useSelector } from 'react-redux'
 
 export default function SideWindow() {
+    const { collections } = useSelector((state) => state.collections)
 
-    const { collections } = useSelector(state => state.collections)
-
+    const { theme } = useSelector((state) => state.theme)
 
     const [newCollectionModalVisible, setNewCollectionModalVisible] = useState(false)
 
@@ -26,8 +26,13 @@ export default function SideWindow() {
             />
             <button onClick={openNewCollectionModalHandler}>Add Collection</button>
 
-            {/* <Tree data={collections} /> */}
-            {JSON.stringify(collections)}
+            {collections.map((collection) => {
+                return (
+                    <p>
+                        <button> {collection.name}</button>
+                    </p>
+                )
+            })}
         </div>
     )
 }

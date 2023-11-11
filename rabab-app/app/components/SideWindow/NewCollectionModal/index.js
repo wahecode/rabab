@@ -1,22 +1,23 @@
 'use client'
 
-
-import { addCollection } from '@/app/slices/collectionSlice';
+import { addCollection } from '@/app/slices/collectionSlice'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
 const showErrorMessages = (errors) => {
     if (!errors || errors.length == 0) {
-        return null;
+        return null
     }
 
-    return <div className='w-auto mb-2 mx-8 border text-center items-center bg-gray-200 text-red-500 dark:bg-red-500 dark:text-white rounded-xl'>
-        <ul class="list-none pl-5 ">
-            {errors.map(error => {
-                return <li className="my-2">{error}</li>
-            })}
-        </ul>
-    </div>
+    return (
+        <div className="w-auto mb-2 mx-8 border text-center items-center bg-gray-200 text-red-500 dark:bg-red-500 dark:text-white rounded-xl">
+            <ul class="list-none pl-5 ">
+                {errors.map((error) => {
+                    return <li className="my-2">{error}</li>
+                })}
+            </ul>
+        </div>
+    )
 }
 
 export default function NewCollectionModal({ isVisible, closeModalHandler }) {
@@ -25,8 +26,8 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
         location: '',
         errors: [],
     }
-    const [state, setState] = useState(initialState);
-    const dispatch = useDispatch();
+    const [state, setState] = useState(initialState)
+    const dispatch = useDispatch()
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -53,34 +54,31 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
                 ...prevProps,
                 ['errors']: errors,
             }))
-            return false;
+            return false
         }
-        return true;
+        return true
     }
-
 
     const onSaveHandler = (e) => {
         e.preventDefault()
 
         if (validateForm()) {
+            dispatch(
+                addCollection({
+                    name: state.name,
+                    requests: [],
+                })
+            ) // store collection into redux
 
-            dispatch(addCollection({
-                name: state.name,
-                requests: []
-            })); // store collection into redux
-
-            setState({ ...initialState }); // clear form
+            setState({ ...initialState }) // clear form
             closeModalHandler()
         }
     }
-
-
 
     if (isVisible) {
         return (
             <div className="modal-shadow" id="my-modal">
                 <div className="modal-body ">
-
                     <h3 className="text-xl leading-6 font-medium pb-10 mx-32">
                         Add New Collection
                     </h3>
@@ -132,7 +130,6 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
                                 Cancel
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

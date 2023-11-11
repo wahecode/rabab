@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const slice = createSlice({
     name: 'collections',
     initialState: {
-        collections: []
+        collections: [],
     },
     reducers: {
-        addCollection: (state, collection) => {
-            state.collections.push(collection)
+        addCollection: (state, action) => {
+            state.collections.push(action.payload)
         },
     },
 })
