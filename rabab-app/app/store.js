@@ -1,8 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import ThemeToggleSlice from './slices/themeToggleSlice'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import theme from './slices/themeToggleSlice'
+import collections from './slices/collectionSlice'
+
+
+const reducer = combineReducers({
+    theme,
+    collections
+})
 
 export const store = configureStore({
-    reducer: {
-        theme: ThemeToggleSlice,
-    },
+    reducer
 })
+
+export default store;

@@ -25,7 +25,7 @@ export default function App(props) {
     //         ],
     //     },
     // ];
-    const theme = useSelector((state) => state.theme.value)
+    const { theme } = useSelector(state => state.theme)
     return (
         <div className={theme}>
             <div className="bg-slate-50 dark:bg-gray-950 text-black dark:text-slate-200">
