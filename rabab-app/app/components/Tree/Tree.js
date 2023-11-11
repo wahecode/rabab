@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import TreeNode from "./TreeNode/TreeNode";
+'use client'
+import React from 'react'
+import TreeNode from './TreeNode/TreeNode'
 
 export const Tree = ({ data = [] }) => {
     return (
@@ -11,5 +11,5 @@ export const Tree = ({ data = [] }) => {
                 ))}
             </ul>
         </div>
-    );
-};
+    )
+}

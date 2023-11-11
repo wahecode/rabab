@@ -1,11 +1,23 @@
-import React from 'react'
-import Modal from '../Modal'
+'use client'
+import { useState } from 'react'
+import NewCollectionModal from './NewCollectionModal'
 
 export default function SideWindow() {
+    const [newCollectionModalVisible, setNewCollectionModalVisible] = useState(false)
+    const closeNewCollectionModalHandler = () => {
+        setNewCollectionModalVisible(false)
+    }
+
+    const openNewCollectionModalHandler = () => {
+        setNewCollectionModalVisible(true)
+    }
     return (
         <div>
-            {/* <Modal >My Modal Content</Modal> */}
-
+            <NewCollectionModal
+                isVisible={newCollectionModalVisible}
+                closeModalHandler={closeNewCollectionModalHandler}
+            />
+            <button onClick={openNewCollectionModalHandler}>Add Collection</button>
         </div>
     )
 }

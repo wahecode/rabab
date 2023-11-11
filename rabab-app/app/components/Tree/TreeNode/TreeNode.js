@@ -1,14 +1,14 @@
-"use client";
-import React, { useState } from "react";
-import { Tree } from "../Tree";
-import Image from "next/image";
-import rightArrow from "../../../../public/fast-arrow-right.svg";
-import downArrow from "../../../../public/fast-arrow-down.svg";
+'use client'
+import React, { useState } from 'react'
+import { Tree } from '../Tree'
+import Image from 'next/image'
+import rightArrow from '../../../../public/fast-arrow-right.svg'
+import downArrow from '../../../../public/fast-arrow-down.svg'
 
 export default function TreeNode({ node }) {
-    const [expand, setExpand] = useState(false);
+    const [expand, setExpand] = useState(false)
 
-    const hasChildren = node.children ? true : false;
+    const hasChildren = node.children ? true : false
 
     return (
         <li className="px-5" key={node.id}>
@@ -28,5 +28,5 @@ export default function TreeNode({ node }) {
                 </div>
             )}
         </li>
-    );
+    )
 }
