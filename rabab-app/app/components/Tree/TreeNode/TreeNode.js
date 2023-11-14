@@ -12,14 +12,10 @@ export default function TreeNode({ node }) {
 
     return (
         <li className="px-5" key={node.id}>
-            <div className="flex" onClick={(e) => setExpand((v) => !v)}>
+            <div className="" onClick={(e) => setExpand((v) => !v)}>
                 <div className="tree-head pr-px">{node.label}</div>
-                {hasChildren &&
-                    (expand ? (
-                        <Image src={downArrow} className="color" />
-                    ) : (
-                        <Image src={rightArrow} className="color" />
-                    ))}
+                <p >Add Request</p>
+                {getTreeArrowIcon()}
             </div>
 
             {hasChildren && expand && (
@@ -29,4 +25,15 @@ export default function TreeNode({ node }) {
             )}
         </li>
     )
+}
+
+const getTreeArrowIcon = (hasChildren, expand) => {
+
+    if (hasChildren) {
+        if (expand) {
+            return <Image src={downArrow} className="color" />;
+        }
+        <Image src={rightArrow} className="color" />
+    }
+    return null;
 }

@@ -5,10 +5,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ShowErrors from '../ShowErrors'
 
-export default function NewCollectionModal({ isVisible, closeModalHandler }) {
+
+
+export default function NewRequestModal({ collectionId, isVisible, closeModalHandler }) {
     const initialState = {
         name: '',
-        location: '',
         errors: [],
     }
     const [state, setState] = useState(initialState)
@@ -30,9 +31,7 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
     const validateForm = () => {
         const errors = []
         if (!state.name) {
-            errors.push('Please enter collection name')
-        } else if (!state.location) {
-            errors.push('Please enter collection location')
+            errors.push('Please enter request name')
         }
         if (errors.length > 0) {
             setState((prevProps) => ({
@@ -49,7 +48,7 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
 
         if (validateForm()) {
             dispatch(
-                addCollection({
+                addRequest({
                     name: state.name,
                     requests: [],
                 })
@@ -65,7 +64,7 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
             <div className="modal-shadow" id="my-modal">
                 <div className="modal-body ">
                     <h3 className="text-xl leading-6 font-medium pb-10 mx-32">
-                        Add New Collection
+                        Add New Request
                     </h3>
                     {/* show errors  */}
                     <ShowErrors errors={state.errors} />
@@ -86,23 +85,6 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
                                 />
                             </div>
                         </div>
-                        <div class="md:flex md:items-center mb-6">
-                            <div class="md:w-1/4">
-                                <label class="modal-label" for="inline-full-name">
-                                    Location
-                                </label>
-                            </div>
-                            <div class="md:w-3/4 mr-6">
-                                <input
-                                    className="modal-input"
-                                    name="location"
-                                    type="text"
-                                    value={state.location}
-                                    onChange={handleInputChange}
-                                />
-                            </div>
-                        </div>
-
                         <div className="md:flex md:items-center px-12 ">
                             <button id="ok-btn" className="ok-btn" onClick={onSaveHandler}>
                                 Save

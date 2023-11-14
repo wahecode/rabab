@@ -7,6 +7,7 @@ import Panel from './components/PanelContainer/Panel'
 import { Tree } from './components/Tree/Tree'
 import NavigationContainer from './components/NavigationContainer'
 import SideWindow from './components/SideWindow'
+import RequestPanel from './components/RequestPanel'
 
 export default function App(props) {
     // const collections = [
@@ -43,7 +44,7 @@ export default function App(props) {
                     <Panel>
                         <PanelContainer>
                             <ResizeablePanel minwidth="500px" maxwidth="1000px">
-                                Center Panel
+                                <RequestPanel />
                             </ResizeablePanel>
                             <Panel>Right Panel</Panel>
                         </PanelContainer>
