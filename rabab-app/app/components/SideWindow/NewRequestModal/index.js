@@ -1,6 +1,6 @@
 'use client'
 
-import { addCollection } from '@/app/slices/collectionSlice'
+import { addCollection, addRequest } from '@/app/slices/collectionSlice'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ShowErrors from '../ShowErrors'

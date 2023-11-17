@@ -39,13 +39,13 @@ export default function ResizeablePanel(props) {
         }
     }, [dragging, newWidth])
 
-    const className = 'flex relative ml-1 shrink-0 ' + props.className
+    const className = 'flex ml-1 shrink-0 flex-nowrap' + props.className
 
     return (
         <div className={className} style={{ width: newWidth }}>
             <div className="w-full">{props.children}</div>
             <div
-                className="absolute flex h-screen cursor-col-resize w-1 -right-1 
+                className="h-screen cursor-col-resize w-1 -right-1 
                             border-l border-gray-500 hover:border-l-2"
                 onMouseDown={handleDragbarMouseDown}
             ></div>
