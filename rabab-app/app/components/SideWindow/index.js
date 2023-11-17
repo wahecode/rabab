@@ -1,11 +1,9 @@
 'use client'
 import { useState } from 'react'
 import NewCollectionModal from './NewCollectionModal'
-import { Tree } from '../Tree/Tree'
 import { useSelector } from 'react-redux'
-import TreeService from '@/lib/TreeService'
 import NewRequestModal from './NewRequestModal'
-import TreeWrapper from './TreeWrapper'
+import CollectionTree from './CollectionTree'
 
 export default function SideWindow() {
     const { collections } = useSelector((state) => state.collections)
@@ -44,7 +42,7 @@ export default function SideWindow() {
             />
             <button onClick={openNewCollectionModalHandler}>Add Collection</button>
 
-            <TreeWrapper collections={collections} />
+            <CollectionTree collections={collections} />
         </div>
     )
 }
