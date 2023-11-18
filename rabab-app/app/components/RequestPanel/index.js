@@ -1,9 +1,13 @@
 import React from 'react'
-const getTabHtml = (tabContent) => {
+const getTabHtml = (tabTitle, isSelected) => {
+
+    const selectedClassName = isSelected ? 'inline-block p-2  rounded-t-lg border-b-2 border-black dark:border-slate-200' : 'inline-block p-2  rounded-t-lg ';
+
+
     return (
         <li className="me-2" role="presentation">
             <button
-                className="inline-block p-4 border-b-2 rounded-t-lg"
+                className={selectedClassName}
                 id="profile-tab"
                 data-tabs-target="#profile"
                 type="button"
@@ -11,7 +15,7 @@ const getTabHtml = (tabContent) => {
                 aria-controls="profile"
                 aria-selected="false"
             >
-                {tabContent}
+                {tabTitle}
             </button>
         </li>
     )
@@ -40,15 +44,16 @@ const getTabContentHtml = () => {
 
 export default function RequestPanel() {
     return (
-        <div className='z-0'>
-            <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
+        <div className=''>
+            <div className="mb-4  border-b border-gray-200 dark:border-gray-700">
                 <ul
-                    className="flex flex-wrap -mb-px text-sm font-medium text-center"
+                    className="flex flex-wrap -mb-px text-sm font-medium text-center "
                     id="default-tab"
                     data-tabs-toggle="#default-tab-content"
                     role="tablist"
                 >
-                    {getTabHtml("First")}
+                    {getTabHtml("First", true)}
+                    {getTabHtml("Second", false)}
 
 
                 </ul>
