@@ -4,28 +4,11 @@ import { useSelector } from 'react-redux'
 import PanelContainer from './components/PanelContainer'
 import ResizeablePanel from './components/PanelContainer/ResizeablePanel'
 import Panel from './components/PanelContainer/Panel'
-import { Tree } from './components/Tree/Tree'
 import NavigationContainer from './components/NavigationContainer'
 import SideWindow from './components/SideWindow'
 import RequestPanel from './components/RequestPanel'
 
 export default function App(props) {
-    // const collections = [
-    //     {
-    //         id: "0",
-    //         label: "Node 1",
-    //         children: [
-    //             {
-    //                 id: "0-0",
-    //                 label: "Node 1-1",
-    //             },
-    //             {
-    //                 id: "0-2",
-    //                 label: "Node 1-2",
-    //             },
-    //         ],
-    //     },
-    // ];
     const { theme } = useSelector((state) => state.theme)
     return (
         <div className={theme}>
@@ -37,7 +20,6 @@ export default function App(props) {
                         maxwidth="500px"
                         className="bg-gray-200 dark:bg-gray-900"
                     >
-                        {/* <Tree data={collections} /> */}
                         <SideWindow />
                     </ResizeablePanel>
 
