@@ -2,15 +2,25 @@ import TabView, { TabPanel } from '@/app/common/TabView'
 import React, { useState } from 'react'
 import Params from './Params';
 
-export default function RequestTabs({ request }) {
+export default function RequestTabs({ request, onChange }) {
 
-    const [selectedTabId, setSelectedTabId] = useState('params');
+    const onChangeHandler = (request) => {
+        if (onChange) {
+            onChange(request);
+        }
+    }
 
     return (
         <TabView>
-            <TabPanel header='Params'><Params request={request} /></TabPanel>
-            <TabPanel header='Authorization'>Authorization</TabPanel>
-            <TabPanel header='Body'>Body</TabPanel>
+            <TabPanel header='Params'>
+                <Params request={request} onChange={onChangeHandler} />
+            </TabPanel>
+            <TabPanel header='Authorization'>
+                Authorization
+            </TabPanel>
+            <TabPanel header='Body'>
+                Body
+            </TabPanel>
         </TabView>
     )
 }

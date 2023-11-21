@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Params({ request }) {
+export default function Params({ request, onChange }) {
 
+    const onChangeHandler = (param, index) => {
+        request.params[index] = param;
+        if (onChange) {
+            onChange(request);
+        }
+    }
 
-    // useEffect
 
     return (
         <div>
@@ -18,9 +23,7 @@ export default function Params({ request }) {
                 <div className='w-full border-rabab border-t-0 border-l-0  p-1' >Description</div>
             </div>
             {request && request.params && request.params.map(p => {
-                return <ParamsRow param={p} onChange={(param, index) => {
-                    request.params[index] = param;
-                }} />
+                return <ParamsRow param={p} onChange={onChangeHandler} />
             })}
         </div>
     )

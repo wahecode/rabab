@@ -14,13 +14,18 @@ export default function RequestPanel() {
             selected: true
         })
     }
+
+    const onChangeHandler = (request) => {
+        alert(JSON.stringify(request));
+    }
+
     return (
         <div className='' id='requestPanel'>
             <TabView>
                 <TabPanel header='First'>
                     <div className='pt-2'>
                         <EndPointUriBar />
-                        <RequestTabs request={request} />
+                        <RequestTabs request={request} onChange={onChangeHandler} />
                     </div>
                 </TabPanel>
             </TabView>
