@@ -37,6 +37,8 @@ const getTabContentHtml = () => {
                 <div className='w-full'>
                     <input type='text' name='uri' id='uri' className='dark:bg-black w-full outline-none' />
                 </div>
+                <div className='pr-1'><button className='bg-blue-600 w-12'>Send</button></div>
+                <div><button className='bg-blue-600 w-12'>Save</button></div>
             </div>
             <div>
                 <RequestTabs />
