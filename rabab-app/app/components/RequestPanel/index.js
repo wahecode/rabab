@@ -20,9 +20,7 @@ export default function RequestPanel() {
                 <TabPanel header='First'>
                     <div className='pt-2'>
                         <EndPointUriBar />
-                        <div>
-                            <RequestTabs request={request} />
-                        </div>
+                        <RequestTabs request={request} />
                     </div>
                 </TabPanel>
             </TabView>
