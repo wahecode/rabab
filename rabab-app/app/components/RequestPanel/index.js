@@ -1,10 +1,13 @@
 import TabView, { TabPanel } from '@/app/common/TabView';
 import React from 'react'
 import RequestTabs from '../RequestTabs';
+import { EndPointUriBar } from './EndpointUriBar';
 
 
 export default function RequestPanel() {
-    const request = {};
+    const request = {
+        url: ''
+    };
     if (request) {
         request.params = [];
         request.params.push({
@@ -16,7 +19,14 @@ export default function RequestPanel() {
     }
 
     const onChangeHandler = (request) => {
-        alert(JSON.stringify(request));
+        // this.request = request
+    }
+    const onSendHandler = () => {
+        alert(JSON.stringify(request))
+    }
+
+    const onSaveHandler = () => {
+        alert(JSON.stringify(request))
     }
 
     return (
@@ -24,7 +34,7 @@ export default function RequestPanel() {
             <TabView>
                 <TabPanel header='First'>
                     <div className='pt-2'>
-                        <EndPointUriBar />
+                        <EndPointUriBar request={request} onChange={onChangeHandler} onSend={onSendHandler} onSave={onSaveHandler} />
                         <RequestTabs request={request} onChange={onChangeHandler} />
                     </div>
                 </TabPanel>
@@ -35,23 +45,6 @@ export default function RequestPanel() {
 
 
 
-export function EndPointUriBar() {
-    return (
-        <div className='flex w-full p-1 border border-rabab'>
-            <div className='border-r  '>
-                <select className='dark:bg-black outline-none'>
-                    <option value='GET'>GET</option>
-                    <option value='POST'>POST</option>
-                    <option value='DELETE'>DELETE</option>
-                </select>
-            </div>
-            <div className='w-full'>
-                <input type='text' name='uri' id='uri' className='dark:bg-black w-full outline-none' />
-            </div>
-            <div className='pr-1'><button className='bg-blue-600 w-12'>Send</button></div>
-            <div><button className='bg-blue-600 w-12'>Save</button></div>
-        </div>
-    )
-}
+
 
 
