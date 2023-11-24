@@ -27,9 +27,6 @@ export default function SideWindow() {
         setNewRequestModalVisible(true)
     }
 
-
-
-
     return (
         <div>
             <NewCollectionModal

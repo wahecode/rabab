@@ -5,8 +5,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import ShowErrors from '../ShowErrors'
 
-
-
 export default function NewRequestModal({ collectionId, isVisible, closeModalHandler }) {
     const initialState = {
         name: '',
@@ -63,9 +61,7 @@ export default function NewRequestModal({ collectionId, isVisible, closeModalHan
         return (
             <div className="modal-shadow" id="my-modal">
                 <div className="modal-body ">
-                    <h3 className="text-xl leading-6 font-medium pb-10 mx-32">
-                        Add New Request
-                    </h3>
+                    <h3 className="text-xl leading-6 font-medium pb-10 mx-32">Add New Request</h3>
                     {/* show errors  */}
                     <ShowErrors errors={state.errors} />
                     <div>
