@@ -1,6 +1,6 @@
 import TabView, { TabPanel } from '@/app/common/TabView'
 import React from 'react'
-import RequestTabs from '../RequestTabs'
+import RequestTabs from './RequestTabs'
 import { EndPointUriBar } from './EndpointUriBar'
 
 export default function RequestPanel() {
