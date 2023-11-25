@@ -1,8 +1,11 @@
 import Tree, { TreeNode } from '@/app/common/Tree'
 import DottedMenu from '@/app/common/Tree/DottedLMenu'
+import { addNewRequest } from '@/app/slices/requestSlice'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 export default function CollectionTree({ collections }) {
+    const dispatch = useDispatch()
     const menuItems = [
         { id: 1, label: 'New Request' },
         { id: 2, label: 'Rename' },
@@ -12,6 +15,7 @@ export default function CollectionTree({ collections }) {
     const onMenuClickHandler = (item) => {
         if (item && item.id == 1) {
             // open new request modal
+            dispatch(addNewRequest())
         }
     }
 

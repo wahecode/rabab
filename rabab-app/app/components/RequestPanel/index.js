@@ -3,8 +3,11 @@ import React from 'react'
 import RequestTabs from './RequestTabs'
 import { EndPointUriBar } from './EndpointUriBar'
 import axios from 'axios'
-
+import { useDispatch } from 'react-redux'
+import { updateConsole } from '@/app/slices/consoleSlice'
+var FileSaver = require('file-saver')
 export default function RequestPanel() {
+    const dispatch = useDispatch()
     const request = {
         uri: '',
         method: 'GET',
@@ -16,26 +19,38 @@ export default function RequestPanel() {
         // this.request = request
     }
     const onSendHandler = () => {
-        alert(JSON.stringify(request, null, 2))
-        // axios
-        //     .get('https://dummy.restapiexample.com/api/v1/employee/', {
-        //         params: {
-        //             ID: 12345,
-        //         },
-        //     })
-        //     .then(function (response) {
-        //         console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error)
-        //     })
-        //     .finally(function () {
-        //         // always executed
-        //     })
+        //alert(JSON.stringify(request, null, 2))
+        axios
+            .get('http://localhost:8080/api/v1/employee/', {
+                params: {
+                    ID: 12345,
+                },
+            })
+            .then(function (response) {
+                console.log(response)
+            })
+            .catch(function (error) {
+                console.log(error.toJSON())
+                dispatch(
+                    updateConsole({
+                        status: 'failure',
+                        logs: JSON.stringify(error),
+                    })
+                )
+                //console.log(error)
+            })
+            .finally(function () {
+                // always executed
+            })
     }
 
     const onSaveHandler = () => {
         alert(JSON.stringify(request))
+        var file = new File(['Hello, world!'], 'hello_world.txt', {
+            type: 'text/plain;charset=utf-8',
+        })
+
+        FileSaver.saveAs(file)
     }
 
     return (

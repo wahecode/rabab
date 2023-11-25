@@ -7,6 +7,7 @@ import Splitter from './common/Splitter'
 import SplitPanel from './common/Splitter/SplitPanel'
 import NavigationContainer from './components/NavigationContainer'
 import Panel from './common/Splitter/Panel'
+import Console from './components/Console'
 
 export default function App(props) {
     const { theme } = useSelector((state) => state.theme)
@@ -28,7 +29,9 @@ export default function App(props) {
                             <SplitPanel minwidth="500px" maxwidth="1000px">
                                 <RequestPanel />
                             </SplitPanel>
-                            <Panel>Right Panel</Panel>
+                            <Panel>
+                                <Console />
+                            </Panel>
                         </Splitter>
                     </Panel>
                 </Splitter>
