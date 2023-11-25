@@ -12,10 +12,14 @@ export default function CollectionTree({ collections }) {
         { id: 3, label: 'Delete' },
     ]
 
-    const onMenuClickHandler = (item) => {
+    const onMenuClickHandler = (item, collectionId) => {
         if (item && item.id == 1) {
             // open new request modal
-            dispatch(addNewRequest())
+            dispatch(
+                addNewRequest({
+                    collectionId,
+                })
+            )
         }
     }
 
@@ -26,7 +30,10 @@ export default function CollectionTree({ collections }) {
                     <TreeNode>
                         <div className="flex">
                             <div className="text-sm">{col.name}</div>
-                            <DottedMenu items={menuItems} onClickHandler={onMenuClickHandler} />
+                            <DottedMenu
+                                items={menuItems}
+                                onClickHandler={(item) => onMenuClickHandler(item, col.id)}
+                            />
                         </div>
                         {col.requests && (
                             <Tree>

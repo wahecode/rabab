@@ -10,14 +10,15 @@ export const slice = createSlice({
             state.collections.push(action.payload)
         },
         addRequest: (state, action) => {
-            const collectionId = action.payload.collectionId
+            const request = action.payload.request
+            const collectionId = request.collectionId
 
             const collection = state.collections.find((col) => (col.id = collectionId))
-            collection.requests.push(action.payload.request)
+            collection.requests.push(request)
         },
         updateRequest: (state, action) => {
-            const collectionId = action.payload.collectionId
             const request = action.payload.request
+            const collectionId = request.collectionId
 
             const collection = state.collections.find((col) => (col.id = collectionId))
 

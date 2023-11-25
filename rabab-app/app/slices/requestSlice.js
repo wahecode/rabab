@@ -6,8 +6,11 @@ export const slice = createSlice({
         requests: [],
     },
     reducers: {
-        addNewRequest: (state) => {
+        addNewRequest: (state, action) => {
             state.requests.push({
+                id: Math.random(),
+                name: 'New Request',
+                collectionId: action.payload.collectionId,
                 uri: null,
                 method: 'GET',
                 params: [],

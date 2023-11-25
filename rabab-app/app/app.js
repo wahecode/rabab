@@ -11,6 +11,7 @@ import Console from './components/Console'
 
 export default function App(props) {
     const { theme } = useSelector((state) => state.theme)
+    const { requests } = useSelector((state) => state.requests)
     return (
         <div className={theme}>
             <div className="bg-rabab text-black dark:text-slate-200 text-xs">
@@ -27,7 +28,9 @@ export default function App(props) {
                     <Panel>
                         <Splitter>
                             <SplitPanel minwidth="500px" maxwidth="1000px">
-                                <RequestPanel />
+                                {requests.map((request) => {
+                                    return <RequestPanel request={request} />
+                                })}
                             </SplitPanel>
                             <Panel>
                                 <Console />

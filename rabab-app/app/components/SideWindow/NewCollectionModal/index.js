@@ -50,6 +50,7 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
         if (validateForm()) {
             dispatch(
                 addCollection({
+                    id: Math.random(),
                     name: state.name,
                     requests: [],
                 })

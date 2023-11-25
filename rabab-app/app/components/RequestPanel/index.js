@@ -6,14 +6,8 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
 var FileSaver = require('file-saver')
-export default function RequestPanel() {
+export default function RequestPanel({ request }) {
     const dispatch = useDispatch()
-    const request = {
-        uri: '',
-        method: 'GET',
-        headers: [],
-        params: [],
-    }
 
     const onChangeHandler = (request) => {
         // this.request = request
@@ -56,7 +50,7 @@ export default function RequestPanel() {
     return (
         <div className="" id="requestPanel">
             <TabView>
-                <TabPanel header="First">
+                <TabPanel header={request.name}>
                     <div className="pt-2">
                         <EndPointUriBar
                             request={request}
