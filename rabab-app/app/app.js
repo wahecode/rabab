@@ -12,7 +12,7 @@ export default function App(props) {
     const { theme } = useSelector((state) => state.theme)
     return (
         <div className={theme}>
-            <div className="bg-rabab text-black dark:text-slate-200">
+            <div className="bg-rabab text-black dark:text-slate-200 text-xs">
                 <NavigationContainer />
                 <PanelContainer>
                     <ResizeablePanel

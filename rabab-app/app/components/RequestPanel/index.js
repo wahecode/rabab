@@ -8,36 +8,30 @@ export default function RequestPanel() {
     const request = {
         uri: '',
         method: 'GET',
+        headers: [],
         params: [],
-    }
-    if (request) {
-        request.params.push({
-            name: 'boolId',
-            value: 'a12345',
-            description: 'my desc',
-            selected: true,
-        })
     }
 
     const onChangeHandler = (request) => {
         // this.request = request
     }
     const onSendHandler = () => {
-        axios
-            .get('https://dummy.restapiexample.com/api/v1/employee/', {
-                params: {
-                    ID: 12345,
-                },
-            })
-            .then(function (response) {
-                console.log(response)
-            })
-            .catch(function (error) {
-                console.log(error)
-            })
-            .finally(function () {
-                // always executed
-            })
+        alert(JSON.stringify(request, null, 2))
+        // axios
+        //     .get('https://dummy.restapiexample.com/api/v1/employee/', {
+        //         params: {
+        //             ID: 12345,
+        //         },
+        //     })
+        //     .then(function (response) {
+        //         console.log(response)
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //     })
+        //     .finally(function () {
+        //         // always executed
+        //     })
     }
 
     const onSaveHandler = () => {

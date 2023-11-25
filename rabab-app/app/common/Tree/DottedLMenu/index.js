@@ -9,8 +9,10 @@ export default function DottedMenu({ items, onClickHandler }) {
 
     useEffect(() => {
         document.addEventListener('mousedown', (e) => {
-            if (!menuRef.current.contains(e.target)) {
-                setVisible(false)
+            if (menuRef && menuRef.current) {
+                if (!menuRef.current.contains(e.target)) {
+                    setVisible(false)
+                }
             }
         })
     })
@@ -31,6 +33,7 @@ export default function DottedMenu({ items, onClickHandler }) {
                     {items.map((item) => {
                         return (
                             <li
+                                key={Math.random()}
                                 className="text-xs hover:bg-blue-200 hover:dark:text-black py-1 pl-4"
                                 onClick={(e) => {
                                     setVisible(false)

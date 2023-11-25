@@ -7,9 +7,13 @@ export default function ShowErrors({ errors }) {
 
     return (
         <div className="w-auto mb-2 mx-8 border text-center items-center bg-gray-200 text-red-500 dark:bg-red-500 dark:text-white rounded-xl">
-            <ul class="list-none pl-5 ">
+            <ul className="list-none pl-5 ">
                 {errors.map((error) => {
-                    return <li className="my-2">{error}</li>
+                    return (
+                        <li key={Math.random()} className="my-2">
+                            {error}
+                        </li>
+                    )
                 })}
             </ul>
         </div>

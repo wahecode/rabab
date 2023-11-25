@@ -70,13 +70,13 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
                     {/* show errors  */}
                     <ShowErrors errors={state.errors} />
                     <div>
-                        <div class="md:flex md:items-center mb-6">
-                            <div class="md:w-1/4">
-                                <label class="modal-label" for="inline-full-name">
+                        <div className="md:flex md:items-center mb-6">
+                            <div className="md:w-1/4">
+                                <label className="modal-label" htmlFor="inline-full-name">
                                     Name
                                 </label>
                             </div>
-                            <div class="md:w-3/4 mr-6">
+                            <div className="md:w-3/4 mr-6">
                                 <input
                                     className="modal-input"
                                     name="name"
@@ -86,13 +86,13 @@ export default function NewCollectionModal({ isVisible, closeModalHandler }) {
                                 />
                             </div>
                         </div>
-                        <div class="md:flex md:items-center mb-6">
-                            <div class="md:w-1/4">
-                                <label class="modal-label" for="inline-full-name">
+                        <div className="md:flex md:items-center mb-6">
+                            <div className="md:w-1/4">
+                                <label className="modal-label" htmlFor="inline-full-name">
                                     Location
                                 </label>
                             </div>
-                            <div class="md:w-3/4 mr-6">
+                            <div className="md:w-3/4 mr-6">
                                 <input
                                     className="modal-input"
                                     name="location"

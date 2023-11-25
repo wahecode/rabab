@@ -19,7 +19,7 @@ export default function CollectionTree({ collections }) {
         <Tree>
             {collections.map((col) => {
                 return (
-                    <TreeNode key={col.id}>
+                    <TreeNode>
                         <div className="flex">
                             <div className="text-sm">{col.name}</div>
                             <DottedMenu items={menuItems} onClickHandler={onMenuClickHandler} />
@@ -27,7 +27,7 @@ export default function CollectionTree({ collections }) {
                         {col.requests && (
                             <Tree>
                                 {col.requests.map((req) => {
-                                    return <TreeNode key={req.id}>{req.name}</TreeNode>
+                                    return <TreeNode>{req.name}</TreeNode>
                                 })}
                             </Tree>
                         )}
