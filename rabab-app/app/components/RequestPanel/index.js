@@ -6,8 +6,18 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
 var FileSaver = require('file-saver')
-export default function RequestPanel({ request }) {
+export default function RequestPanel({ requestObj }) {
     const dispatch = useDispatch()
+
+    const request = {
+        id: Math.random(),
+        name: 'New Request',
+        collectionId: Math.random(),
+        uri: null,
+        method: 'GET',
+        params: [],
+        headers: [],
+    }
 
     const onChangeHandler = (request) => {
         // this.request = request
@@ -48,20 +58,14 @@ export default function RequestPanel({ request }) {
     }
 
     return (
-        <div className="" id="requestPanel">
-            <TabView>
-                <TabPanel header={request.name}>
-                    <div className="pt-2">
-                        <EndPointUriBar
-                            request={request}
-                            onChange={onChangeHandler}
-                            onSend={onSendHandler}
-                            onSave={onSaveHandler}
-                        />
-                        <RequestTabs request={request} onChange={onChangeHandler} />
-                    </div>
-                </TabPanel>
-            </TabView>
+        <div className="pt-2">
+            <EndPointUriBar
+                request={request}
+                onChange={onChangeHandler}
+                onSend={onSendHandler}
+                onSave={onSaveHandler}
+            />
+            <RequestTabs request={request} onChange={onChangeHandler} />
         </div>
     )
 }

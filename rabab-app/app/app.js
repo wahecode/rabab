@@ -8,6 +8,7 @@ import SplitPanel from './common/Splitter/SplitPanel'
 import NavigationContainer from './components/NavigationContainer'
 import Panel from './common/Splitter/Panel'
 import Console from './components/Console'
+import TabView, { TabPanel } from './common/TabView'
 
 export default function App(props) {
     const { theme } = useSelector((state) => state.theme)
@@ -28,9 +29,15 @@ export default function App(props) {
                     <Panel>
                         <Splitter>
                             <SplitPanel minwidth="500px" maxwidth="1000px">
-                                {requests.map((request) => {
-                                    return <RequestPanel request={request} />
-                                })}
+                                <TabView>
+                                    {requests.map((request) => {
+                                        return (
+                                            <TabPanel header={request.name}>
+                                                <RequestPanel request={request} />
+                                            </TabPanel>
+                                        )
+                                    })}
+                                </TabView>
                             </SplitPanel>
                             <Panel>
                                 <Console />
