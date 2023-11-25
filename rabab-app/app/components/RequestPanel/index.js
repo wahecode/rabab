@@ -5,10 +5,12 @@ import { EndPointUriBar } from './EndpointUriBar'
 
 export default function RequestPanel() {
     const request = {
-        url: '',
+        uri: '',
+        method: 'GET',
+        params: []
     }
     if (request) {
-        request.params = []
+
         request.params.push({
             name: 'boolId',
             value: 'a12345',

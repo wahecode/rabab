@@ -1,8 +1,10 @@
+import Button from '@/app/common/Button'
 import InputText from '@/app/common/InputText'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Params({ request, onChange }) {
     const [parameters, setParameters] = useState(request.params)
+    const [, setState] = useState(false);
 
     const onChangeHandler = (param) => {
         const index = request.params.findIndex((x) => {
@@ -28,30 +30,46 @@ export default function Params({ request, onChange }) {
         }
         setParameters(params) // local state
     }
+    const onNewClickHandler = () => {
+
+        request.params.push({ "name": "", "value": "", "description": "", "selected": false });
+        if (onChange) {
+            onChange(request)
+        }
+        setParameters(request.params);
+        setState(perv => !perv);
+    }
+
+
 
     return (
-        <table className="w-full">
-            <tbody>
-                <tr>
-                    <td className=" w-6 pl-2 pr-2 border-rabab pt-1 pb-1"></td>
-                    <td className=" border-rabab border-t-0 border-l-0  p-1">Key</td>
-                    <td className=" border-rabab border-t-0 border-l-0  p-1">Value</td>
-                    <td className=" border-rabab border-t-0 border-l-0  p-1">Description</td>
-                    <td className="w-16 pl-2 pr-2 border-rabab border-r-0">Delete</td>
-                </tr>
+        <div>
+            <table className="w-full">
+                <tbody>
+                    <tr>
+                        <td className=" w-6 pl-2 pr-2 border-rabab pt-1 pb-1"></td>
+                        <td className=" border-rabab border-t-0 border-l-0  p-1">KEY</td>
+                        <td className=" border-rabab border-t-0 border-l-0  p-1">VALUE</td>
+                        <td className=" border-rabab border-t-0 border-l-0  p-1">DESCRIPTION</td>
+                        <td className="w-16 pl-2 pr-2 border-rabab border-r-0">DELETE</td>
+                    </tr>
 
-                {parameters &&
-                    parameters.map((p) => {
-                        return (
-                            <ParamsRow
-                                param={p}
-                                onChange={onChangeHandler}
-                                onDelete={onDeleteHandler}
-                            />
-                        )
-                    })}
-            </tbody>
-        </table>
+                    {parameters &&
+                        parameters.map((p) => {
+                            return (
+                                <ParamsRow
+                                    param={p}
+                                    onChange={onChangeHandler}
+                                    onDelete={onDeleteHandler}
+                                />
+                            )
+                        })}
+                </tbody>
+            </table>
+            <div className='pt-1'>
+                <Button onClick={onNewClickHandler}>New</Button>
+            </div>
+        </div>
     )
 }
 
