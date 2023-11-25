@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-export default function ResizeablePanel(props) {
+export default function SplitPanel(props) {
     const DEFAULT_MIN_WIDTH = props.minwidth ? props.minwidth : '300px'
     const DEFAULT_MAX_WIDTH = props.maxwidth ? props.maxwidth : '550px'
 
