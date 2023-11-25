@@ -2,12 +2,11 @@ import Button from '@/app/common/Button'
 import InputText from '@/app/common/InputText'
 
 export function EndPointUriBar({ request, onChange, onSend, onSave }) {
-
     const onChangeHandler = (name, newValue) => {
         if (name == 'method') {
-            request.method = newValue;
+            request.method = newValue
         } else {
-            request.uri = newValue;
+            request.uri = newValue
         }
 
         if (onChange) {
@@ -15,11 +14,13 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
         }
     }
 
-
     return (
         <div className="flex w-full p-1 border border-rabab">
             <div className="border-r">
-                <select className="dark:bg-black outline-none" onChange={e => onChangeHandler('method', e.target.value)}>
+                <select
+                    className="dark:bg-black outline-none"
+                    onChange={(e) => onChangeHandler('method', e.target.value)}
+                >
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
                     <option value="DELETE">DELETE</option>

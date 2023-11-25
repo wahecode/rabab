@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function Params({ request, onChange }) {
     const [parameters, setParameters] = useState(request.params)
-    const [, setState] = useState(false);
+    const [, setState] = useState(false)
 
     const onChangeHandler = (param) => {
         const index = request.params.findIndex((x) => {
@@ -31,16 +31,13 @@ export default function Params({ request, onChange }) {
         setParameters(params) // local state
     }
     const onNewClickHandler = () => {
-
-        request.params.push({ "name": "", "value": "", "description": "", "selected": false });
+        request.params.push({ name: '', value: '', description: '', selected: false })
         if (onChange) {
             onChange(request)
         }
-        setParameters(request.params);
-        setState(perv => !perv);
+        setParameters(request.params)
+        setState((perv) => !perv)
     }
-
-
 
     return (
         <div>
@@ -67,7 +64,7 @@ export default function Params({ request, onChange }) {
                         })}
                 </tbody>
             </table>
-            <div className='pt-1'>
+            <div className="pt-1">
                 <Button onClick={onNewClickHandler}>New</Button>
             </div>
         </div>
