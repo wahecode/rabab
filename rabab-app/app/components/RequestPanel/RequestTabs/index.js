@@ -2,6 +2,7 @@ import TabView, { TabPanel } from '@/app/common/TabView'
 import React, { useState } from 'react'
 import Params from './Params'
 import Headers from './Headers'
+import Body from './Body'
 
 export default function RequestTabs({ request, onChange }) {
     const onChangeHandler = (request) => {
@@ -18,7 +19,9 @@ export default function RequestTabs({ request, onChange }) {
             <TabPanel header="Headers">
                 <Headers request={request} onChange={onChangeHandler} />
             </TabPanel>
-            <TabPanel header="Body">Body</TabPanel>
+            <TabPanel header="Body">
+                <Body />
+            </TabPanel>
         </TabView>
     )
 }

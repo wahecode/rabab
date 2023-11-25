@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 
 export default function DottedMenu({ items, onClickHandler }) {
-    const [isVisible, setVisible] = useState(true)
+    const [isVisible, setVisible] = useState(false)
 
     let menuRef = useRef()
 
