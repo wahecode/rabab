@@ -55,9 +55,10 @@ export default function Params({ request, onChange }) {
                     </tr>
 
                     {parameters &&
-                        parameters.map((p) => {
+                        parameters.map((p, index) => {
                             return (
                                 <ParamsRow
+                                    key={index}
                                     param={p}
                                     onChange={onChangeHandler}
                                     onDelete={onDeleteHandler}

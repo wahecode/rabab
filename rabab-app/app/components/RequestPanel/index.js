@@ -2,6 +2,7 @@ import TabView, { TabPanel } from '@/app/common/TabView'
 import React from 'react'
 import RequestTabs from './RequestTabs'
 import { EndPointUriBar } from './EndpointUriBar'
+import axios from 'axios';
 
 export default function RequestPanel() {
     const request = {
@@ -23,7 +24,17 @@ export default function RequestPanel() {
         // this.request = request
     }
     const onSendHandler = () => {
-        alert(JSON.stringify(request))
+        axios.get('https://dummy.restapiexample.com/api/v1/employee/', {
+            params: {
+                ID: 12345
+            }
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        }).finally(function () {
+            // always executed
+        });
     }
 
     const onSaveHandler = () => {

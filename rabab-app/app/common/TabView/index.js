@@ -23,7 +23,7 @@ export default function TabView({ children }) {
             ? 'inline-block p-2  rounded-t-lg border-b-2 border-black dark:border-slate-200'
             : 'inline-block p-2  rounded-t-lg '
         return (
-            <li
+            <li key={Math.random()}
                 className="me-2"
                 role="presentation"
                 onClick={() => {
