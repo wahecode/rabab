@@ -6,18 +6,8 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
 var FileSaver = require('file-saver')
-export default function RequestPanel({ requestObj }) {
+export default function RequestPanel({ request }) {
     const dispatch = useDispatch()
-
-    const request = {
-        id: Math.random(),
-        name: 'New Request',
-        collectionId: Math.random(),
-        uri: null,
-        method: 'GET',
-        params: [],
-        headers: [],
-    }
 
     const onChangeHandler = (request) => {
         // this.request = request
