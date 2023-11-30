@@ -16,41 +16,12 @@ export default function TabView({ children }) {
     }
 
     const headers = getTabNames()
-    const [selectedTab, setSelectedTab] = useState(headers ? headers[0] : '')
+    const [selectedTabTitle, setSelectedTab] = useState(headers ? headers[0] : '')
 
-    const getTabHtml = (tabTitle, isSelected) => {
-        const selectedClassName = isSelected
-            ? 'inline-block p-2  rounded-t-lg border-b-2 border-black dark:border-slate-200'
-            : 'inline-block p-2  rounded-t-lg '
-        return (
-            <li
-                key={Math.random()}
-                className="me-2"
-                role="presentation"
-                onClick={() => {
-                    if (tabTitle) {
-                        setSelectedTab(tabTitle)
-                    }
-                }}
-            >
-                <button
-                    className={selectedClassName}
-                    id="profile-tab"
-                    data-tabs-target="#profile"
-                    type="button"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                >
-                    {tabTitle}
-                </button>
-            </li>
-        )
-    }
 
     const getTabContentHtml = () => {
         if (Array.isArray(children)) {
-            return children.find((element) => element.props.header == selectedTab)
+            return children.find((element) => element.props.header == selectedTabTitle)
         } else {
             return children
         }
@@ -66,15 +37,49 @@ export default function TabView({ children }) {
                     role="tablist"
                 >
                     {headers.map((header) => {
-                        return getTabHtml(header, selectedTab == header)
+                        // return getTabHtml(header, selectedTab == header)
+                        return <TabHeaderHtml tabTitle={header} selected={selectedTabTitle == header}
+                            onClick={title => {
+                                setSelectedTab(title)
+                            }} />
                     })}
                 </ul>
             </div>
-            <div>{getTabContentHtml()}</div>
+            <div>{getTabContentHtml(selectedTabTitle)}</div>
         </div>
     )
 }
 
 export function TabPanel({ header, children }) {
     return <div id={header}>{children}</div>
+}
+
+function TabHeaderHtml({ selected, tabTitle, onClick }) {
+    const selectedClassName = selected
+        ? 'inline-block p-2  rounded-t-lg border-b-2 border-black dark:border-slate-200'
+        : 'inline-block p-2  rounded-t-lg '
+    return (
+        <li
+            key={Math.random()}
+            className="me-2"
+            role="presentation"
+            onClick={() => {
+                if (tabTitle) {
+                    onClick(tabTitle)
+                }
+            }}
+        >
+            <button
+                className={selectedClassName}
+                id="profile-tab"
+                data-tabs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+            >
+                {tabTitle}
+            </button>
+        </li>
+    )
 }
