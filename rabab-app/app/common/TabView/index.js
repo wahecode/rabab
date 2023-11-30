@@ -37,8 +37,7 @@ export default function TabView({ children }) {
                     role="tablist"
                 >
                     {headers.map((header) => {
-                        // return getTabHtml(header, selectedTab == header)
-                        return <TabHeaderHtml tabTitle={header} selected={selectedTabTitle == header}
+                        return <TabHeader tabTitle={header} selected={selectedTabTitle == header}
                             onClick={title => {
                                 setSelectedTab(title)
                             }} />
@@ -54,7 +53,7 @@ export function TabPanel({ header, children }) {
     return <div id={header}>{children}</div>
 }
 
-function TabHeaderHtml({ selected, tabTitle, onClick }) {
+function TabHeader({ selected, tabTitle, onClick }) {
     const selectedClassName = selected
         ? 'inline-block p-2  rounded-t-lg border-b-2 border-black dark:border-slate-200'
         : 'inline-block p-2  rounded-t-lg '
