@@ -17,14 +17,21 @@ export const slice = createSlice({
             collection.requests.push(request)
         },
         updateRequest: (state, action) => {
-            const request = action.payload.request
+
+            const request = action.payload
+
             const collectionId = request.collectionId
 
             const collection = state.collections.find((col) => (col.id = collectionId))
 
-            const index = collection.request.requests.findIndex((x) => x.id == request.id)
+            const index = collection.requests.findIndex((x) => x.id == request.id)
 
-            collection.requests[index] = request
+            if (index && index > 0) {
+                collection.requests[index] = request
+            } else {
+                collection.requests.push(request)
+            }
+
         },
     },
 })

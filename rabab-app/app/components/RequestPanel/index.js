@@ -5,6 +5,7 @@ import { EndPointUriBar } from './EndpointUriBar'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
+import { updateRequest } from '@/app/slices/collectionSlice'
 var FileSaver = require('file-saver')
 export default function RequestPanel({ request }) {
     const dispatch = useDispatch()
@@ -40,11 +41,13 @@ export default function RequestPanel({ request }) {
 
     const onSaveHandler = () => {
         alert(JSON.stringify(request))
-        var file = new File(['Hello, world!'], 'hello_world.txt', {
-            type: 'text/plain;charset=utf-8',
-        })
+        // var file = new File(['Hello, world!'], 'hello_world.txt', {
+        //     type: 'text/plain;charset=utf-8',
+        // })
 
-        FileSaver.saveAs(file)
+        // FileSaver.saveAs(file)
+        dispatch(updateRequest(request))
+
     }
 
     return (
