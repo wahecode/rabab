@@ -29,6 +29,7 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 <select
                     className="dark:bg-black outline-none"
                     onChange={(e) => onChangeHandler('method', e.target.value)}
+                    value={method}
                 >
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
