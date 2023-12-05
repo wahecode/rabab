@@ -25,8 +25,19 @@ export const slice = createSlice({
                 headers: [],
             })
         },
-    },
+        refreshOpenRequest: (state, action) => {
+            const request = action.payload.request;
+            if (state.requests) {
+                const index = state.requests.findIndex(req => req.id == request.id);
+
+                if (index != -1) {
+                    state.requests[index] = request;
+                }
+
+            }
+        }
+    }
 })
 
-export const { addNewRequest } = slice.actions
+export const { addNewRequest, refreshOpenRequest } = slice.actions
 export default slice.reducer

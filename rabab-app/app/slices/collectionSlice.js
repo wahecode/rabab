@@ -26,7 +26,7 @@ export const slice = createSlice({
 
             const index = collection.requests.findIndex((x) => x.id == request.id)
 
-            if (index && index > 0) {
+            if (index != -1) {
                 collection.requests[index] = request
             } else {
                 collection.requests.push(request)

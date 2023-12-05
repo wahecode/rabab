@@ -6,6 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
 import { updateRequest } from '@/app/slices/collectionSlice'
+import { refreshOpenRequest } from '@/app/slices/requestSlice'
 var FileSaver = require('file-saver')
 export default function RequestPanel({ request }) {
     const dispatch = useDispatch()
@@ -47,6 +48,13 @@ export default function RequestPanel({ request }) {
 
         // FileSaver.saveAs(file)
         dispatch(updateRequest(request))
+
+
+        dispatch(
+            refreshOpenRequest({
+                request
+            })
+        )
 
     }
 
