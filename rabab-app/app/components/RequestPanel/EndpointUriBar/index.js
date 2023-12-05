@@ -1,18 +1,26 @@
 import Button from '@/app/common/Button'
 import InputText from '@/app/common/InputText'
+import { useState } from 'react';
 
 export function EndPointUriBar({ request, onChange, onSend, onSave }) {
+    const [method, setMethod] = useState(request.method);
+    const [uri, setUri] = useState(request.uri);
+
     const onChangeHandler = (name, newValue) => {
         if (name == 'method') {
             request.method = newValue
+            setMethod(newValue);
         } else {
             request.uri = newValue
+            setUri(newValue);
         }
 
         if (onChange) {
             onChange(request)
         }
     }
+
+
 
     return (
         <div className="flex w-full p-1 border border-rabab">
@@ -27,7 +35,8 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 </select>
             </div>
             <div className="w-full">
-                <InputText name="uri" value={request.uri} onChange={onChangeHandler} />
+                <InputText name="uri" value={uri}
+                    onChange={(value) => onChangeHandler('uri', value)} />
             </div>
             <div className="pr-1">
                 <Button onClick={onSend}>Send</Button>
