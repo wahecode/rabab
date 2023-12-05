@@ -11,6 +11,7 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
             request.method = newValue
             setMethod(newValue);
         } else {
+
             request.uri = newValue
             setUri(newValue);
         }
@@ -36,7 +37,9 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
             </div>
             <div className="w-full">
                 <InputText name="uri" value={uri}
-                    onChange={(value) => onChangeHandler('uri', value)} />
+                    onChange={(name, value) => {
+                        onChangeHandler(name, value)
+                    }} />
             </div>
             <div className="pr-1">
                 <Button onClick={onSend}>Send</Button>
