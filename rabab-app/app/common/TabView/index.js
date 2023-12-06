@@ -44,7 +44,7 @@ export default function TabView({ children }) {
                     })}
                 </ul>
             </div>
-            <div>{getTabContentHtml(selectedTabTitle)}</div>
+            {getTabContentHtml(selectedTabTitle)}
         </div>
     )
 }
