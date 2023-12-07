@@ -1,28 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react';
 
-export default function InputText({ name, value, onChange }) {
-    const [val, setVal] = useState(value)
-
-    const onChangeHandler = (e) => {
-        setVal(e.target.value)
-        if (onChange) {
-            onChange(name, e.target.value)
-        }
-    }
+const InputText = ({ value, onChange }) => {
+    const [inputValue, setInputValue] = useState(value);
 
     useEffect(() => {
-        setVal(value)
-    }, [value])
+        // Update the local state when the prop value changes
+        setInputValue(value);
+    }, [value]);
 
+    const handleInputChange = (event) => {
+        const newValue = event.target.value;
+        setInputValue(newValue);
+
+        // Propagate the change to the parent component
+        onChange(newValue);
+    };
 
     return (
-        <div>
-            <input
-                type="text"
-                value={val}
-                onChange={onChangeHandler}
-                className="dark:bg-black w-full h-full outline-none dark:focus:bg-gray-700"
-            />
-        </div>
-    )
-}
+        <input
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            className="dark:bg-black w-full h-full outline-none dark:focus:bg-gray-700"
+        />
+    );
+};
+
+export default InputText;
+
