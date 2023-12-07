@@ -2,41 +2,48 @@ import Button from '@/app/common/Button'
 import InputText from '@/app/common/InputText'
 import React, { useEffect, useState } from 'react'
 
-export default function Params({ request, onChange }) {
-    const [parameters, setParameters] = useState(request.params)
+export default function Params({ params, onChange }) {
+    const [inputParams, setInputParams] = useState(params)
     const [, setState] = useState(false)
 
+    useEffect(() => {
+        setInputParams(params)
+        alert(JSON.stringify(params))
+    }, [params]);
+
     const onChangeHandler = (param) => {
-        const index = request.params.findIndex((x) => {
+        const index = inputParams.findIndex((x) => {
             if (x) {
-                return x.name === param.name
+                return x.id === param.id
             }
         })
+        const localParams = [...inputParams];
+        localParams[index] = param;
 
-        request.params[index] = param
+        setInputParams(localParams);
         if (onChange) {
-            onChange(request)
+            onChange(localParams)
         }
     }
 
     const onDeleteHandler = (param) => {
-        const params = request.params.filter((x) => {
-            return x.name != param.name
+        const localParams = inputParams.filter((x) => {
+            return x.id === param.id
         })
 
-        request.params = params
+        setInputParams(localParams);
         if (onChange) {
-            onChange(request)
+            onChange(localParams)
         }
-        setParameters(params) // local state
     }
     const onNewClickHandler = () => {
-        request.params.push({ name: '', value: '', description: '', selected: false })
-        if (onChange) {
-            onChange(request)
-        }
-        setParameters(request.params)
+        const localParams = [...inputParams];
+        localParams.push({ id: Math.random(), name: '', value: '', description: '', selected: false })
+        setInputParams(localParams)
         setState((perv) => !perv)
+        if (onChange) {
+            onChange(localParams)
+        }
     }
 
     return (
@@ -50,9 +57,8 @@ export default function Params({ request, onChange }) {
                         <td className=" border-rabab border-t-0 border-l-0  p-1">DESCRIPTION</td>
                         <td className="w-16 pl-2 pr-2 border-rabab border-r-0">DELETE</td>
                     </tr>
-
-                    {parameters &&
-                        parameters.map((p, index) => {
+                    {inputParams &&
+                        inputParams.map((p, index) => {
                             return (
                                 <ParamsRow
                                     key={index}
@@ -72,33 +78,41 @@ export default function Params({ request, onChange }) {
 }
 
 function ParamsRow({ param, onChange, onDelete }) {
+    const [inputParam, setInputParam] = useState(param);
+    useEffect(() => {
+        setInputParam(param)
+    }, [param]);
+
     const onChangeHandler = (name, newValue) => {
-        param[name] = newValue
+        const localParam = { ...inputParam }
+        localParam[name] = newValue
+
         if (onChange) {
-            onChange(param)
+            onChange(localParam)
         }
     }
 
     const onClickHandler = () => {
-        onDelete(param)
+        const localParam = { ...inputParam }
+        onDelete(localParam)
     }
 
     return (
         <tr>
             <td className=" pl-2 pr-2 border bg-rabab-border pt-1 pb-1">
-                <CheckBoxColumn name="selected" value={param.selected} onChange={onChangeHandler} />
+                <CheckBoxColumn name="selected" value={inputParam.selected} onChange={value => onChangeHandler('selected', value)} />
             </td>
             <td className="border border-t-0 border-l-0 bg-rabab-border p-1">
-                <InputText name="name" value={param.name} onChange={onChangeHandler} />
+                <InputText name="name" value={inputParam.name} onChange={value => onChangeHandler('name', value)} />
             </td>
             <td className="border border-t-0 border-l-0 bg-rabab-border p-1">
-                <InputText name="value" value={param.value} onChange={onChangeHandler} />
+                <InputText name="value" value={inputParam.value} onChange={value => onChangeHandler('value', value)} />
             </td>
             <td className="border border-t-0 border-l-0 bg-rabab-border p-1">
                 <InputText
                     name="description"
-                    value={param.description}
-                    onChange={onChangeHandler}
+                    value={inputParam.description}
+                    onChange={value => onChangeHandler('description', value)}
                 />
             </td>
             <td className=" border border-t-0 border-l-0 bg-rabab-border">

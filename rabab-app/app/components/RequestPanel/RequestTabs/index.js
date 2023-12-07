@@ -1,23 +1,43 @@
 import TabView, { TabPanel } from '@/app/common/TabView'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Params from './Params'
 import Headers from './Headers'
 import Body from './Body'
+import { getRequestExtensibleCopy } from '@/lib/RequestUtil'
 
 export default function RequestTabs({ request, onChange }) {
-    const onChangeHandler = (request) => {
+    const [inputRequest, setInputRequest] = useState(request);
+
+    useEffect(() => {
+        setInputRequest(request)
+    }, [request])
+
+    const onParamsChangeHandler = (params) => {
+        const localRequest = getRequestExtensibleCopy(request);
+        localRequest.params = params;
+        setInputRequest(localRequest);
         if (onChange) {
-            onChange(request)
+            onChange(localRequest);
+        }
+
+    }
+
+    const onHeadersChangeHandler = (headers) => {
+        const localRequest = getRequestExtensibleCopy(request);
+        localRequest.headers = headers;
+        setInputRequest(localRequest);
+        if (onChange) {
+            onChange(localRequest);
         }
     }
 
     return (
         <TabView>
             <TabPanel header="Params">
-                <Params request={request} onChange={onChangeHandler} />
+                <Params params={inputRequest.params} onChange={onParamsChangeHandler} />
             </TabPanel>
             <TabPanel header="Headers">
-                <Headers request={request} onChange={onChangeHandler} />
+                <Headers request={inputRequest} onChange={onHeadersChangeHandler} />
             </TabPanel>
             <TabPanel header="Body">
                 <Body />

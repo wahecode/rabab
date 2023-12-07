@@ -27,12 +27,13 @@ export default function RequestPanel({ request }) {
         localRequest.method = data.method;
         setInputRequest(localRequest);
         dispatch(refreshOpenRequest({ request: localRequest }))
-
     }
 
-    const onRequestTabChangeHandler = (data) => {
-
+    const onRequestTabChangeHandler = (localRequest) => {
+        setInputRequest(localRequest);
+        dispatch(refreshOpenRequest({ request: localRequest }))
     }
+
     const onSendHandler = () => {
         //alert(JSON.stringify(request, null, 2))
         axios
