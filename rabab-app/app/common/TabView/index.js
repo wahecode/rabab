@@ -1,22 +1,12 @@
 import React, { useState } from 'react'
 
-export default function TabView({ children }) {
-    const getTabNames = () => {
-        const headers = []
-        if (children) {
-            if (Array.isArray(children)) {
-                children.map((child) => {
-                    headers.push(child.props.header)
-                })
-            } else {
-                headers.push(children.props.header)
-            }
-        }
-        return headers
-    }
+export default function TabView({ children, onSelection }) {
 
-    const headers = getTabNames()
-    const [selectedTabTitle, setSelectedTab] = useState(headers ? headers[0] : '')
+    const kids = Array.isArray(children) ? children : [children];
+
+
+
+    const [selectedTabTitle, setSelectedTab] = useState(kids[0] ? kids[0].props.header : '')
 
 
     const getTabContentHtml = () => {
@@ -36,10 +26,13 @@ export default function TabView({ children }) {
                     data-tabs-toggle="#default-tab-content"
                     role="tablist"
                 >
-                    {headers.map((header) => {
-                        return <TabHeader tabTitle={header} selected={selectedTabTitle == header}
+                    {kids.map((kid) => {
+                        return <TabHeader tabTitle={kid.props.header} selected={selectedTabTitle == kid.props.header}
                             onClick={title => {
                                 setSelectedTab(title)
+                                if (onSelection) {
+                                    onSelection(kid.props.id);
+                                }
                             }} />
                     })}
                 </ul>
@@ -49,8 +42,8 @@ export default function TabView({ children }) {
     )
 }
 
-export function TabPanel({ header, children }) {
-    return <div id={header}>{children}</div>
+export function TabPanel({ id, header, children }) {
+    return <div id={id}>{children}</div>
 }
 
 function TabHeader({ selected, tabTitle, onClick }) {

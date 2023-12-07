@@ -10,6 +10,7 @@ import Panel from './common/Splitter/Panel'
 import Console from './components/Console'
 import TabView, { TabPanel } from './common/TabView'
 import { getRequestExtensibleCopy } from '@/lib/RequestUtil'
+import CenterWindow from './components/CenterWindow'
 
 export default function App(props) {
     const { theme } = useSelector((state) => state.theme)
@@ -31,16 +32,7 @@ export default function App(props) {
                     <Panel>
                         <Splitter>
                             <SplitPanel minwidth="500px" maxwidth="1000px">
-                                <TabView>
-                                    {requests.map((req) => {
-                                        const request = getRequestExtensibleCopy(req)
-                                        return (
-                                            <TabPanel header={request.name}>
-                                                <RequestPanel request={request} />
-                                            </TabPanel>
-                                        )
-                                    })}
-                                </TabView>
+                                <CenterWindow />
                             </SplitPanel>
                             <Panel>
                                 <Console />
