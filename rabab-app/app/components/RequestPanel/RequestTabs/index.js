@@ -1,7 +1,6 @@
 import TabView, { TabPanel } from '@/app/common/TabView'
 import React, { useEffect, useState } from 'react'
 import Params from './Params'
-import Headers from './Headers'
 import Body from './Body'
 import { getRequestExtensibleCopy } from '@/lib/RequestUtil'
 
@@ -37,7 +36,7 @@ export default function RequestTabs({ request, onChange }) {
                 <Params params={inputRequest.params} onChange={onParamsChangeHandler} />
             </TabPanel>
             <TabPanel header="Headers">
-                <Headers request={inputRequest} onChange={onHeadersChangeHandler} />
+                <Params params={inputRequest.headers} onChange={onHeadersChangeHandler} />
             </TabPanel>
             <TabPanel header="Body">
                 <Body />

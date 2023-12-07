@@ -8,7 +8,7 @@ export default function Params({ params, onChange }) {
 
     useEffect(() => {
         setInputParams(params)
-        alert(JSON.stringify(params))
+
     }, [params]);
 
     const onChangeHandler = (param) => {
@@ -37,6 +37,7 @@ export default function Params({ params, onChange }) {
         }
     }
     const onNewClickHandler = () => {
+
         const localParams = [...inputParams];
         localParams.push({ id: Math.random(), name: '', value: '', description: '', selected: false })
         setInputParams(localParams)

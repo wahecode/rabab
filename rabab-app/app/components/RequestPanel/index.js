@@ -15,7 +15,7 @@ export default function RequestPanel({ request }) {
     const [inputRequest, setInputRequest] = useState(request);
     useEffect(() => {
         setInputRequest(request)
-        //alert('finally request panel changed' + JSON.stringify(request, null, 4));
+
     }, [request]);
 
 
