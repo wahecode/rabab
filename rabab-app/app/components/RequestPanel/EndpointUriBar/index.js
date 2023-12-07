@@ -1,23 +1,32 @@
 import Button from '@/app/common/Button'
 import InputText from '@/app/common/InputText'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function EndPointUriBar({ request, onChange, onSend, onSave }) {
-    const [method, setMethod] = useState(request.method);
-    const [uri, setUri] = useState(request.uri);
+export function EndPointUriBar({ method, uri, onChange, onSend, onSave }) {
+    const [inputMethod, setInputMethod] = useState(method);
+    const [inputUri, setInputUri] = useState(uri);
+
+    useEffect(() => {
+        // Update the local state when the prop value changes
+        setInputMethod(method);
+        setInputUri(uri)
+    }, [method, uri]);
 
     const onChangeHandler = (name, newValue) => {
+        const val = {
+            uri: inputUri,
+            method: inputMethod
+        }
         if (name == 'method') {
-            request.method = newValue
-            // setMethod(newValue);
+            val.method = newValue
+            setInputMethod(newValue);
         } else {
-
-            request.uri = newValue
-            //setUri(newValue);
+            val.uri = newValue
+            setInputUri(newValue)
         }
 
         if (onChange) {
-            onChange(request)
+            onChange(val)
         }
     }
 
@@ -29,7 +38,7 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 <select
                     className="dark:bg-black outline-none"
                     onChange={(e) => onChangeHandler('method', e.target.value)}
-                    value={request.method}
+                    value={inputMethod}
                 >
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
@@ -37,9 +46,9 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 </select>
             </div>
             <div className="w-full">
-                <InputText name="uri" value={request.uri}
-                    onChange={(name, value) => {
-                        onChangeHandler(name, value)
+                <InputText value={inputUri}
+                    onChange={(value) => {
+                        onChangeHandler('uri', value)
                     }} />
             </div>
             <div className="pr-1">

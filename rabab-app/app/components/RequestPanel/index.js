@@ -57,7 +57,8 @@ export default function RequestPanel({ request }) {
     return (
         <div className="pt-2">
             <EndPointUriBar
-                request={request}
+                method={request.method}
+                uri={request.uri}
                 onChange={onChangeHandler}
                 onSend={onSendHandler}
                 onSave={onSaveHandler}
