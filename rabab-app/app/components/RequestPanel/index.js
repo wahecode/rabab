@@ -12,7 +12,7 @@ export default function RequestPanel({ request }) {
     const dispatch = useDispatch()
 
     const onChangeHandler = (request) => {
-        // this.request = request
+        dispatch(refreshOpenRequest({ request }))
     }
     const onSendHandler = () => {
         //alert(JSON.stringify(request, null, 2))
@@ -50,11 +50,7 @@ export default function RequestPanel({ request }) {
         dispatch(updateRequest(request))
 
 
-        dispatch(
-            refreshOpenRequest({
-                request
-            })
-        )
+
 
     }
 
