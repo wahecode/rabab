@@ -15,16 +15,18 @@ export default function RequestPanel({ request }) {
     const [inputRequest, setInputRequest] = useState(request);
     useEffect(() => {
         setInputRequest(request)
+        alert('finally request panel changed');
     }, [request]);
 
 
 
 
     const onEndpointBarChangeHandler = (data) => {
-
-        inputRequest.uri = data.uri;
-        inputRequest.method = data.method;
-        dispatch(refreshOpenRequest({ inputRequest }))
+        const localRequest = getRequestExtensibleCopy(inputRequest);
+        localRequest.uri = data.uri;
+        localRequest.method = data.method;
+        setInputRequest(localRequest);
+        dispatch(refreshOpenRequest({ request: localRequest }))
 
     }
     const onSendHandler = () => {
