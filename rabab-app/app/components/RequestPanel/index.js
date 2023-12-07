@@ -1,5 +1,5 @@
 import TabView, { TabPanel } from '@/app/common/TabView'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RequestTabs from './RequestTabs'
 import { EndPointUriBar } from './EndpointUriBar'
 import axios from 'axios'
@@ -7,12 +7,25 @@ import { useDispatch } from 'react-redux'
 import { updateConsole } from '@/app/slices/consoleSlice'
 import { updateRequest } from '@/app/slices/collectionSlice'
 import { refreshOpenRequest } from '@/app/slices/requestSlice'
+import { getRequestExtensibleCopy } from '@/lib/RequestUtil'
 var FileSaver = require('file-saver')
 export default function RequestPanel({ request }) {
-    const dispatch = useDispatch()
 
-    const onChangeHandler = (request) => {
-        dispatch(refreshOpenRequest({ request }))
+    const dispatch = useDispatch()
+    const [inputRequest, setInputRequest] = useState(request);
+    useEffect(() => {
+        setInputRequest(request)
+    }, [request]);
+
+
+
+
+    const onEndpointBarChangeHandler = (data) => {
+
+        inputRequest.uri = data.uri;
+        inputRequest.method = data.method;
+        dispatch(refreshOpenRequest({ inputRequest }))
+
     }
     const onSendHandler = () => {
         //alert(JSON.stringify(request, null, 2))
@@ -41,13 +54,13 @@ export default function RequestPanel({ request }) {
     }
 
     const onSaveHandler = () => {
-        alert(JSON.stringify(request))
+        alert(JSON.stringify(inputRequest))
         // var file = new File(['Hello, world!'], 'hello_world.txt', {
         //     type: 'text/plain;charset=utf-8',
         // })
 
         // FileSaver.saveAs(file)
-        dispatch(updateRequest(request))
+        dispatch(updateRequest(inputRequest))
 
 
 
@@ -57,13 +70,13 @@ export default function RequestPanel({ request }) {
     return (
         <div className="pt-2">
             <EndPointUriBar
-                method={request.method}
-                uri={request.uri}
-                onChange={onChangeHandler}
+                method={inputRequest.method}
+                uri={inputRequest.uri}
+                onChange={onEndpointBarChangeHandler}
                 onSend={onSendHandler}
                 onSave={onSaveHandler}
             />
-            <RequestTabs request={request} onChange={onChangeHandler} />
+            {/* <RequestTabs request={request} onChange={onChangeHandler} /> */}
         </div>
     )
 }
