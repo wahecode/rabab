@@ -17,7 +17,6 @@ export default function InputText({ name, value, onChange }) {
 
     return (
         <div>
-            {console.log(name + '--' + value)}
             <input
                 type="text"
                 value={val}

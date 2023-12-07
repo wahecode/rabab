@@ -33,7 +33,7 @@ export default function RequestPanel({ request }) {
                         logs: JSON.stringify(error),
                     })
                 )
-                //console.log(error)
+
             })
             .finally(function () {
                 // always executed
