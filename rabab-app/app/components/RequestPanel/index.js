@@ -15,7 +15,7 @@ export default function RequestPanel({ request }) {
     const [inputRequest, setInputRequest] = useState(request);
     useEffect(() => {
         setInputRequest(request)
-        alert('finally request panel changed');
+        //alert('finally request panel changed' + JSON.stringify(request, null, 4));
     }, [request]);
 
 
@@ -27,6 +27,10 @@ export default function RequestPanel({ request }) {
         localRequest.method = data.method;
         setInputRequest(localRequest);
         dispatch(refreshOpenRequest({ request: localRequest }))
+
+    }
+
+    const onRequestTabChangeHandler = (data) => {
 
     }
     const onSendHandler = () => {
@@ -78,7 +82,7 @@ export default function RequestPanel({ request }) {
                 onSend={onSendHandler}
                 onSave={onSaveHandler}
             />
-            {/* <RequestTabs request={request} onChange={onChangeHandler} /> */}
+            <RequestTabs request={inputRequest} onChange={onRequestTabChangeHandler} />
         </div>
     )
 }

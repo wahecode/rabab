@@ -19,7 +19,7 @@ export const slice = createSlice({
                 id: Math.random(),
                 name: name,
                 collectionId: action.payload.collectionId,
-                uri: null,
+                uri: '',
                 method: 'GET',
                 params: [],
                 headers: [],

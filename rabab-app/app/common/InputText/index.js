@@ -6,6 +6,7 @@ const InputText = ({ value, onChange }) => {
     useEffect(() => {
         // Update the local state when the prop value changes
         setInputValue(value);
+
     }, [value]);
 
     const handleInputChange = (event) => {
