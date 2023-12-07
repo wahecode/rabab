@@ -12,7 +12,6 @@ export default function CenterWindow() {
 
         let request = requests.find(req => req.id == requestId);
         request = getRequestExtensibleCopy(request)
-        alert(JSON.stringify(request))
         setCurrentRequest(request);
     }
     return (

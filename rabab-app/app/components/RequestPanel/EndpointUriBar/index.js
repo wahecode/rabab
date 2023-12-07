@@ -9,11 +9,11 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
     const onChangeHandler = (name, newValue) => {
         if (name == 'method') {
             request.method = newValue
-            setMethod(newValue);
+            // setMethod(newValue);
         } else {
 
             request.uri = newValue
-            setUri(newValue);
+            //setUri(newValue);
         }
 
         if (onChange) {
@@ -29,7 +29,7 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 <select
                     className="dark:bg-black outline-none"
                     onChange={(e) => onChangeHandler('method', e.target.value)}
-                    value={method}
+                    value={request.method}
                 >
                     <option value="GET">GET</option>
                     <option value="POST">POST</option>
@@ -37,7 +37,7 @@ export function EndPointUriBar({ request, onChange, onSend, onSave }) {
                 </select>
             </div>
             <div className="w-full">
-                <InputText name="uri" value={uri}
+                <InputText name="uri" value={request.uri}
                     onChange={(name, value) => {
                         onChangeHandler(name, value)
                     }} />
